@@ -42,7 +42,7 @@ render(){
    
     
       <Searchbar onSubmit={this.formSubmitHandler}/>
-      <ToastContainer visible={true}/>
+      <ToastContainer/>
       <ImageGallery imagesForSearch={imagesForSearch} onSelect={this.handlerLargeImage}/>
       {showModal && (
           <Modal image={imageForModal} tags={tags} onClose={this.onCloseModal} />

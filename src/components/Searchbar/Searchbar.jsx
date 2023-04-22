@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import css from "./Searchbar.module.css";
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class Searchbar extends Component {
   state={
@@ -10,14 +11,16 @@ class Searchbar extends Component {
 
   handleSubmit=(event)=>{
     const{imagesForSearch}=this.state;
+     event.preventDefault();
     if(imagesForSearch.trim()===''){
       toast.error('Enter images for search');  
          return;
     }
-
-    event.preventDefault();
-    this.props.onSubmit(imagesForSearch);
+console.log(imagesForSearch);
    
+    this.props.onSubmit(imagesForSearch);
+   this.setState({imagesForSearch:''});
+   console.log(imagesForSearch);
   }
 
   handleImagesNames =(event)=>{
@@ -42,6 +45,7 @@ class Searchbar extends Component {
       onChange={this.handleImagesNames}
     />
   </form>
+
 </header>
     )
   }

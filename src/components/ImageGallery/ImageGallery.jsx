@@ -63,6 +63,7 @@ try {const newImages= await imagesAPI.fetchImagesWithQuery(imagesForSearch, curr
 
     loadMoreImages = async () => {
       const {imagesForSearch, currentPage}=this.state;
+      this.setState({ isLoading: true });
       this.setState(
         (prevState) => ({ currentPage: prevState.currentPage + 1 })
       
