@@ -3,8 +3,8 @@ import Searchbar from "../Searchbar";
 import ImageGallery from "../ImageGallery";
 import css from "./App.module.css";
 // import Button from "../Button";
-
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Modal from '../Modal';
 
 class App extends Component {
@@ -42,7 +42,7 @@ render(){
    
     
       <Searchbar onSubmit={this.formSubmitHandler}/>
-      <ToastContainer autoClose={2000}/>
+      <ToastContainer visible={true}/>
       <ImageGallery imagesForSearch={imagesForSearch} onSelect={this.handlerLargeImage}/>
       {showModal && (
           <Modal image={imageForModal} tags={tags} onClose={this.onCloseModal} />
