@@ -40,7 +40,7 @@ try {const newImages= await imagesAPI.fetchImagesWithQuery(imagesForSearch, curr
   this.setState({ isLoading: false });
 }
 }
-// ========================================================================
+// ===========================================================
 
 }
 

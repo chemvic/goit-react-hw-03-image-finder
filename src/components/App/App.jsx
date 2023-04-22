@@ -3,7 +3,7 @@ import Searchbar from "../Searchbar";
 import ImageGallery from "../ImageGallery";
 import css from "./App.module.css";
 // import Button from "../Button";
-// import imagesAPI from "../../api/fetchImages-api";
+
 import { ToastContainer } from 'react-toastify';
 import Modal from '../Modal';
 
@@ -47,15 +47,8 @@ render(){
       {showModal && (
           <Modal image={imageForModal} tags={tags} onClose={this.onCloseModal} />
         )}
-      
-      
-      
-    
     </div>
   );
 }
-
-
- 
 };
 export default App;
