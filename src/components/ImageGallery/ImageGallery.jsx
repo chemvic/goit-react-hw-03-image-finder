@@ -25,6 +25,7 @@ class ImageGallery extends Component {
       this.setState({images:[]});
       this.setState({currentPage:1});
       // this.fetchImages(); 
+    
 
      
 // =====================================================================||prevState.currentPage!==this.state.currentPage
@@ -44,23 +45,6 @@ try {const newImages= await imagesAPI.fetchImagesWithQuery(imagesForSearch, curr
 
 }
 
-
-  
-
- 
-
-    // handleImageClick = event => {
-    //   // Обработчик клика на изображение
-    //   if (event.target.nodeName !== 'IMG') {
-    //     // Если клик был не на изображении, то выходим из функции
-    //     return;
-    //   }
-
-    //   const largeImageURL = "https://pixabay.com/get/g98b80cfda27f15db185136f31543eb7b5244ca0f0279a68443b114875b9c85d59aa1e7ff31c390d2b9337a148e83ae5b5f83d0bc822fa6bb01478eedf5907919_1280.jpg"; // Получаем адрес большого изображения
-    //   this.props.onSelect(largeImageURL);
-    //   console.log(largeImageURL); // Вызываем функцию из родительского компонента для открытия модального окна
-    // };
-
     loadMoreImages = async () => {
       const {imagesForSearch, currentPage}=this.state;
       this.setState({ isLoading: true });
@@ -68,6 +52,7 @@ try {const newImages= await imagesAPI.fetchImagesWithQuery(imagesForSearch, curr
         (prevState) => ({ currentPage: prevState.currentPage + 1 })
       
       );
+      
       try {const newImages= await imagesAPI.fetchImagesWithQuery(imagesForSearch, currentPage);
         this.setState(prevState => ({
             images: [...prevState.images, ...newImages.data.hits],

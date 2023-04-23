@@ -8,19 +8,23 @@ class Searchbar extends Component {
   state={
     imagesForSearch:'',
   }
-
+// componentDidUpdate(prevProps, prevState) { 
+//   if(prevState.imagesForSearch!==this.state.imagesForSearch ){
+//     this.props.onSubmit(this.state.imagesForSearch);
+//   }
+// } 
   handleSubmit=(event)=>{
+    
     const{imagesForSearch}=this.state;
      event.preventDefault();
+
     if(imagesForSearch.trim()===''){
       toast.error('Enter images for search');  
          return;
-    }
-console.log(imagesForSearch);
-   
+    }   
     this.props.onSubmit(imagesForSearch);
-   this.setState({imagesForSearch:''});
-   console.log(imagesForSearch);
+    this.setState({imagesForSearch:''});
+ 
   }
 
   handleImagesNames =(event)=>{

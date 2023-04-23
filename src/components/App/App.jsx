@@ -2,7 +2,6 @@ import React,{Component} from 'react';
 import Searchbar from "../Searchbar";
 import ImageGallery from "../ImageGallery";
 import css from "./App.module.css";
-// import Button from "../Button";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Modal from '../Modal';
@@ -11,7 +10,7 @@ class App extends Component {
 
   state={
     images:[],
-    imagesForSearch:'',
+   imagesForSearch :'',
     showModal: false,
     imageForModal: null,
     tags:'',
@@ -19,9 +18,10 @@ class App extends Component {
 
   };
 
+ 
   formSubmitHandler=(imagesForSearch)=>{     
     this.setState({imagesForSearch});
-  }
+     }
 
   handlerLargeImage=(largeImageURL, tags)=>{
 this.setState({
