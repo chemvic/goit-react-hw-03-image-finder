@@ -9,7 +9,7 @@ import Modal from '../Modal';
 class App extends Component {
 
   state={
-    images:[],
+    // images:[],
    imagesForSearch :'',
     showModal: false,
     imageForModal: null,
