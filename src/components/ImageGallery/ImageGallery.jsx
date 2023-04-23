@@ -5,6 +5,8 @@ import ImageGalleryItem from "../ImageGalleryItem";
 import Button from "../Button";
 import Loader from '../Loader';
 import imagesAPI from "../../api/fetchImages-api";
+
+
 class ImageGallery extends Component {
 
   state={
@@ -83,28 +85,3 @@ const{images, isLoading}=this.state;
 } 
 
 export default ImageGallery;
-
-
-
-
-// async fetchImages() {
-//   this.setState({ isLoading: true });
-// const BASE_URL = "https://pixabay.com/api/";
-//     const KEY = "34144660-7b9b8b2468352e1d4cb8415b4";
-    
-//     let url = `${BASE_URL}?key=${KEY}&q=${this.state.imagesForSearch}
-//     &image_type=photo&orientation=horizontal&safesearch=true
-//     &page=${this.state.currentPage}&per_page=12`;
-    
-//  try { 
-//      const newImages = await axios.get(url)         
-       
-// this.setState(prevState => ({
-//   images: [...prevState.images, ...newImages.data.hits],
-// }));
-// console.log(newImages.data.hits);
-// this.setState({ isLoading: false });
-//  return ;
-//     }
-// catch (error){console.log(error)} ;
-// } 

@@ -9,12 +9,10 @@ import Modal from '../Modal';
 class App extends Component {
 
   state={
-    // images:[],
-   imagesForSearch :'',
+    imagesForSearch :'',
     showModal: false,
     imageForModal: null,
-    tags:'',
-   
+    tags:'',  
 
   };
 
@@ -42,7 +40,7 @@ render(){
    
     
       <Searchbar onSubmit={this.formSubmitHandler}/>
-      <ToastContainer/>
+      <ToastContainer autoClose={1000}/>
       <ImageGallery imagesForSearch={imagesForSearch} onSelect={this.handlerLargeImage}/>
       {showModal && (
           <Modal image={imageForModal} tags={tags} onClose={this.onCloseModal} />

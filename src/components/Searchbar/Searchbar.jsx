@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import css from "./Searchbar.module.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaSearch } from "react-icons/fa";
 
 class Searchbar extends Component {
   state={
     imagesForSearch:'',
   }
-
+ 
   handleSubmit=(event)=>{
     
     const{imagesForSearch}=this.state;
@@ -33,7 +34,7 @@ class Searchbar extends Component {
         <header className={css.searchbar}>
   <form className={css.searchForm} onSubmit={this.handleSubmit}>
     <button type="submit" className={css.searchFormButton}>
-      <span className={css.searchFormButtonLabel}>Search</span>
+        <FaSearch  style={{color: "#84868b",}}/>
     </button>
 
     <input
