@@ -8,11 +8,7 @@ class Searchbar extends Component {
   state={
     imagesForSearch:'',
   }
-// componentDidUpdate(prevProps, prevState) { 
-//   if(prevState.imagesForSearch!==this.state.imagesForSearch ){
-//     this.props.onSubmit(this.state.imagesForSearch);
-//   }
-// } 
+
   handleSubmit=(event)=>{
     
     const{imagesForSearch}=this.state;

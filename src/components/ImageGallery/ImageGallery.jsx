@@ -9,55 +9,33 @@ class ImageGallery extends Component {
 
   state={
     images:[],
-    imagesForSearch:'',
     currentPage: 1,
     isLoading:false,
 
   };
 
-  async componentDidUpdate(prevProps, prevState) { 
-    const {imagesForSearch, currentPage}=this.state;
+  async componentDidUpdate(prevProps, _) { 
     
     if(prevProps.imagesForSearch !== this.props.imagesForSearch){
-      console.log(prevProps.imagesForSearch);
-      console.log(this.props.imagesForSearch);
-      console.log(this.state.imagesForSearch);
+     
       this.setState({ isLoading: true });
-      this.setState({imagesForSearch: this.props.imagesForSearch});
       this.setState({images:[]});
       this.setState({currentPage:1});
-      // this.fetchImages(); 
+      this.fetchImages();       
+
+}
+}
+
+    loadMoreImages =() => {
     
-
-     
-// =====================================================================||prevState.currentPage!==this.state.currentPage
-// GET c помощью вінесенного сервиса api
-
-try {const newImages= await imagesAPI.fetchImagesWithQuery(this.props.imagesForSearch, currentPage);
-  this.setState(prevState => ({
-      images: [...prevState.images, ...newImages.data.hits],
-    }));
-} catch (error) {
-  this.setState({ error });
-} finally {
-  this.setState({ isLoading: false });
-  this.setState(
-    (prevState) => ({ currentPage: prevState.currentPage + 1 })      
-  );
-}
-}
-// ===========================================================
-
-}
-
-    loadMoreImages = async () => {
-      const {imagesForSearch, currentPage}=this.state;
-      this.setState({ isLoading: true });
-      this.setState(
-        (prevState) => ({ currentPage: prevState.currentPage + 1 })      
+        this.setState(
+        (prevState) => ({ currentPage: prevState.currentPage + 1 }),()=>this.fetchImages()       
       );
-      console.log(this.state.imagesForSearch);
-     
+     };
+
+    fetchImages=async()=>{
+      const {currentPage}=this.state;
+      this.setState({ isLoading: true });
       try {const newImages= await imagesAPI.fetchImagesWithQuery(this.props.imagesForSearch, currentPage);
         this.setState(prevState => ({
             images: [...prevState.images, ...newImages.data.hits],
@@ -67,16 +45,16 @@ try {const newImages= await imagesAPI.fetchImagesWithQuery(this.props.imagesForS
       } finally {
         this.setState({ isLoading: false });
       }
-    };
+    }
   
 
   render(){
 const{images, isLoading}=this.state;
+
     return(<>
-    {(isLoading) &&
-      (<Loader visible={true}/>)}
+  
         <ul className={css.imageGallery}>
-       {/* onClick={this.handleImageClick} */}
+    
 			{images.map(({ id, webformatURL, largeImageURL, tags }) => (
       <li  key={id} className={css.imageGalleryItem}>
         <ImageGalleryItem  webformatURL={webformatURL}
@@ -84,7 +62,9 @@ const{images, isLoading}=this.state;
           tags={tags}
            onClick={()=>this.props.onSelect(largeImageURL, tags)}/></li>
             ))}
-</ul>
+</ul> 
+ {(isLoading) &&
+      (<Loader visible={true}/>)}
 {(images.length>0)&&
 <Button onClick={this.loadMoreImages}/>}
 
