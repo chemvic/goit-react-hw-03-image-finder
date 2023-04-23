@@ -19,6 +19,9 @@ class ImageGallery extends Component {
     const {imagesForSearch, currentPage}=this.state;
     
     if(prevProps.imagesForSearch !== this.props.imagesForSearch){
+      console.log(prevProps.imagesForSearch);
+      console.log(this.props.imagesForSearch);
+      console.log(this.state.imagesForSearch);
       this.setState({ isLoading: true });
       this.setState({imagesForSearch: this.props.imagesForSearch});
       this.setState({images:[]});
@@ -30,7 +33,7 @@ class ImageGallery extends Component {
 // =====================================================================||prevState.currentPage!==this.state.currentPage
 // GET c помощью вінесенного сервиса api
 
-try {const newImages= await imagesAPI.fetchImagesWithQuery(imagesForSearch, currentPage);
+try {const newImages= await imagesAPI.fetchImagesWithQuery(this.props.imagesForSearch, currentPage);
   this.setState(prevState => ({
       images: [...prevState.images, ...newImages.data.hits],
     }));
@@ -38,6 +41,9 @@ try {const newImages= await imagesAPI.fetchImagesWithQuery(imagesForSearch, curr
   this.setState({ error });
 } finally {
   this.setState({ isLoading: false });
+  this.setState(
+    (prevState) => ({ currentPage: prevState.currentPage + 1 })      
+  );
 }
 }
 // ===========================================================
@@ -48,11 +54,11 @@ try {const newImages= await imagesAPI.fetchImagesWithQuery(imagesForSearch, curr
       const {imagesForSearch, currentPage}=this.state;
       this.setState({ isLoading: true });
       this.setState(
-        (prevState) => ({ currentPage: prevState.currentPage + 1 })
-      
+        (prevState) => ({ currentPage: prevState.currentPage + 1 })      
       );
-      
-      try {const newImages= await imagesAPI.fetchImagesWithQuery(imagesForSearch, currentPage);
+      console.log(this.state.imagesForSearch);
+     
+      try {const newImages= await imagesAPI.fetchImagesWithQuery(this.props.imagesForSearch, currentPage);
         this.setState(prevState => ({
             images: [...prevState.images, ...newImages.data.hits],
           }));
