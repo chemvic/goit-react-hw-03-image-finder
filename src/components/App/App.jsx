@@ -69,10 +69,11 @@ class App extends Component {
 
 
 
-  onOpenModal=(largeImageURL)=>{
+  onOpenModal=(largeImageURL, tags)=>{
 this.setState({
   imageForModal:largeImageURL,
-  showModal:true
+  showModal:true,
+  tags:tags
   });
   }
 
