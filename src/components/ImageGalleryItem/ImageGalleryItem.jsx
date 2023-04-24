@@ -6,7 +6,7 @@ import React from 'react';
 const ImageGalleryItem=({ webformatURL, largeImageURL, tags, onClick})=>{
 
     return(
-        <img src={webformatURL} alt={tags} onClick={()=>onClick(largeImageURL)} className={css.imageGalleryItemImage}/>
+        <img src={webformatURL} alt={tags} onClick={()=>onClick(largeImageURL,tags)} className={css.imageGalleryItemImage}/>
    
     )
 }

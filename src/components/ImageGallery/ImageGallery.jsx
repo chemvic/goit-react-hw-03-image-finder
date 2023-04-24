@@ -1,86 +1,39 @@
-import React,{Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import css from "./ImageGallery.module.css";
 import ImageGalleryItem from "../ImageGalleryItem";
-import Button from "../Button";
-import Loader from '../Loader';
-import imagesAPI from "../../api/fetchImages-api";
 
 
-class ImageGallery extends Component {
 
-  state={
-    images:[],
-    currentPage: 1,
-    isLoading:false,
+const ImageGallery =({images, onOpenModal})=> {
 
-  };
-
-  async componentDidUpdate(prevProps, _) { 
-    
-    if(prevProps.imagesForSearch !== this.props.imagesForSearch){
-     
-      this.setState({ isLoading: true });
-      this.setState({images:[]});
-      this.setState({currentPage:1});
-      this.fetchImages();       
-
-}
-}
-
-    loadMoreImages =() => {
-    
-        this.setState(
-        (prevState) => ({ currentPage: prevState.currentPage + 1 }),()=>this.fetchImages()       
-      );
-     };
-
-    fetchImages=async()=>{
-      const {currentPage}=this.state;
-      this.setState({ isLoading: true });
-      try {const newImages= await imagesAPI.fetchImagesWithQuery(this.props.imagesForSearch, currentPage);
-        this.setState(prevState => ({
-            images: [...prevState.images, ...newImages.data.hits],
-          }));
-      } catch (error) {
-        this.setState({ error });
-      } finally {
-        this.setState({ isLoading: false });
-      }
-    }
+    return(
   
-
-  render(){
-const{images, isLoading}=this.state;
-
-    return(<>
-  
-        <ul className={css.imageGallery}>
+      <ul className={css.imageGallery}>
     
 			{images.map(({ id, webformatURL, largeImageURL, tags }) => (
       <li  key={id} className={css.imageGalleryItem}>
         <ImageGalleryItem  webformatURL={webformatURL}
          largeImageURL={largeImageURL}
           tags={tags}
-           onClick={()=>this.props.onSelect(largeImageURL, tags)}/></li>
+           onClick={onOpenModal}/></li>
             ))}
-</ul> 
- {(isLoading) &&
-      (<Loader visible={true}/>)}
-{(images.length>0)&&
-<Button onClick={this.loadMoreImages}/>}
-
-
- </>
- 
+      </ul> 
     )
-  }
+  
 
 }
 
  ImageGallery.propTypes={
-    onSelect: PropTypes.func.isRequired,
-    imagesForSearch: PropTypes.string.isRequired,
+  onOpenModal: PropTypes.func.isRequired,
+    images: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        webformatURL: PropTypes.string.isRequired,
+        tags: PropTypes.string.isRequired,
+        largeImageURL: PropTypes.string.isRequired,
+      }).isRequired
+    ).isRequired
     
 } 
 

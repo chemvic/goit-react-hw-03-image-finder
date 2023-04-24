@@ -9,7 +9,8 @@ import axios from 'axios';
         &image_type=photo&orientation=horizontal&safesearch=true
         &page=${currentPage}&per_page=12`;
           
-         const newImages  = await axios.get(url);   
+         const newImages  = await axios.get(url); 
+        
          return newImages;         
      
     }
