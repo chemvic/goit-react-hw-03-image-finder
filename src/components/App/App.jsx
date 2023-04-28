@@ -78,7 +78,7 @@ this.setState({
   }
 
   onCloseModal=()=>{
-    this.setState({imageForModal:null, showModal:false});
+    this.setState({imageForModal:null, showModal:false, tags:''});
   }
 
 render(){
@@ -89,7 +89,9 @@ render(){
     
       <Searchbar onSubmit={this.formSubmitHandler}/>
       <ToastContainer autoClose={1000}/>
-     <ImageGallery images={images} onOpenModal={this.onOpenModal}/>
+
+      {images.length>0 &&     <ImageGallery images={images} onOpenModal={this.onOpenModal}/>
+}
       
 
       {(isLoading) && 
